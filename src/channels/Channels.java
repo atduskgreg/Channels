@@ -28,77 +28,113 @@
 package channels;
 
 
+import java.awt.Color;
+
 import processing.core.*;
 
 /**
- * This is a template class and can be used to start a new processing library or tool.
- * Make sure you rename this class as well as the name of the example package 'template' 
- * to your own library or tool naming convention.
+ * Channels is a Processing library that lets you extract the red, green, blue, hue, saturation, or brightness channels from a PImage. It works similarly to Processing's built-in red(), green(), blue(), brightness(), hue(), and saturation() functions, but instead of applying to individual pixels, Channels' equivalent functions apply to the entire image.
+ * Extracting individual channels can be useful for visualizing or analyzing images. Channels can be used to modify an image in place for display or to extract an array of int representing the pixels for the relevant channel.
  * 
- * @example Hello 
- * 
- * (the tag @example followed by the name of an example included in folder 'examples' will
- * automatically include the example in the javadoc.)
- *
+ * @example ChannelsDemo 
+
  */
 
 public class Channels {
-	
-	// myParent is a reference to the parent sketch
-	PApplet myParent;
-
-	int myVariable = 0;
-	
 	public final static String VERSION = "##library.prettyVersion##";
 	
+	public final static int[] red(int[] pix){
+		return processColor(pix, 16);
+	}
+	
+	public final static int[] green(int[] pix){
+		return processColor(pix, 8);
+	}
+	
+	public final static int[] blue(int[] pix){
+		return processColor(pix, 0);
+	}
+	
+	public final static int[] hue(int[] pix){
+		return processHSB(pix, 0);
+	}
+	
+	public final static int[] saturation(int[] pix){
+		return processHSB(pix, 1);
+	}
+	
+	public final static int[] brightness(int[] pix){
+		return processHSB(pix, 2);
+	}
+	
+	
+	private final static int[] processColor(int[] pix, int offset){
+		int[] result = new int[pix.length];
+		for(int p = 0; p<pix.length; p++){
+			result[p] = pix[p] >> offset & 0xff;
+		}
+		return result;
+	}
+	
+	private final static int[] processHSB(int[] pix, int index){
+		int[] result = new int[pix.length];
 
-	/**
-	 * a Constructor, usually called in the setup() method in your sketch to
-	 * initialize and start the library.
-	 * 
-	 * @example Hello
-	 * @param theParent
-	 */
-	public Channels(PApplet theParent) {
-		myParent = theParent;
-		welcome();
+		for(int p = 0; p< pix.length; p++){
+			   float[] cacheHsbValue = new float[3];
+			   Color.RGBtoHSB((pix[p] >> 16) & 0xff, (pix[p] >> 8) & 0xff,pix[p] & 0xff, cacheHsbValue);
+			   result[p] = (int)cacheHsbValue[index] * 255;
+		}
+		return result;
 	}
 	
-	
-	private void welcome() {
-		System.out.println("##library.name## ##library.prettyVersion## by ##author##");
+	public final static void red(PImage i){		
+		processColor(i, 16);
 	}
 	
+	public final static void green(PImage i){		
+		processColor(i, 8);
+	}
 	
-	public String sayHello() {
-		return "hello library.";
+	public final static void blue(PImage i){		
+		processColor(i, 0);
 	}
-	/**
-	 * return the version of the library.
-	 * 
-	 * @return String
-	 */
-	public static String version() {
-		return VERSION;
+	
+	public final static void hue(PImage i){		
+		processHSB(i, 0);
 	}
+	
+	public final static void saturation(PImage i){		
+		processHSB(i, 1);
+	}
+	
+	public final static void brightness(PImage i){		
+		processHSB(i, 2);
+	}
+	
+	private final static int color(int c){
+		if (c > 255) c = 255; else if (c < 0) c = 0;
+        return 0xff000000 | (c << 16) | (c << 8) | c;
+	}
+	
+	private final static void processColor(PImage i, int offset){
+		i.loadPixels();
+		for(int p = 0; p<(i.width * i.height); p++){
+			i.pixels[p] = color(i.pixels[p] >> offset & 0xff);
+		}
+		i.updatePixels();
+	}
+	
+	private final static void processHSB(PImage i, int index){
+		i.loadPixels();
+		for(int p = 0; p<(i.width * i.height); p++){
+			   float[] cacheHsbValue = new float[3];
+			   Color.RGBtoHSB((i.pixels[p] >> 16) & 0xff, (i.pixels[p] >> 8) & 0xff,i.pixels[p] & 0xff, cacheHsbValue);
+			   i.pixels[p] = color((int)(cacheHsbValue[index] * 255));
+		}
+		i.updatePixels();
 
-	/**
-	 * 
-	 * @param theA
-	 *          the width of test
-	 * @param theB
-	 *          the height of test
-	 */
-	public void setVariable(int theA, int theB) {
-		myVariable = theA + theB;
 	}
+	
 
-	/**
-	 * 
-	 * @return int
-	 */
-	public int getVariable() {
-		return myVariable;
-	}
 }
 
