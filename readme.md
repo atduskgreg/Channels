@@ -1,5 +1,7 @@
 ### Channels
 
+[Download Channels](https://github.com/downloads/atduskgreg/Channels/Channels.zip)
+
 <a href="http://www.flickr.com/photos/unavoidablegrain/7945413206/" title="Processing Channels library demo by atduskgreg, on Flickr"><img src="http://farm9.staticflickr.com/8303/7945413206_5e157c71ae.jpg" width="486"  alt="Processing Channels library demo"></a>
 
 Channels is a Processing library that lets you extract the red, green, blue, hue, saturation, or brightness channels from a PImage. It works similarly to Processing's built-in [red()](http://processing.org/reference/red_.html), [green()](http://processing.org/reference/green_.html), [blue()](http://processing.org/reference/bluee_.html), [brightness()](http://processing.org/reference/brightness_.html), [hue()](http://processing.org/reference/hue_.html), and [saturation()](http://processing.org/reference/saturation_.html) functions, but instead of applying to individual pixels, Channels' equivalent functions apply to the entire image.
