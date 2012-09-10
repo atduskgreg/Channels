@@ -12,7 +12,7 @@ Extracting individual channels can be useful for visualizing or analyzing images
 
 Here's an example of the first mode: modifying a PImage in place so it displays just one channel of the original image.
 
-````
+````java
 PImage myImage;
 void setup(){
   size(500,500);
@@ -27,7 +27,7 @@ void draw(){
 
 Here's an example of the second mode: extracting the pixels of a particular channel for use:
 
-````
+````java
 PImage myImage;
 int[] myPixels;
 void setup(){
