@@ -82,7 +82,7 @@ public class Channels {
 		for(int p = 0; p< pix.length; p++){
 			   float[] cacheHsbValue = new float[3];
 			   Color.RGBtoHSB((pix[p] >> 16) & 0xff, (pix[p] >> 8) & 0xff,pix[p] & 0xff, cacheHsbValue);
-			   result[p] = (int)cacheHsbValue[index] * 255;
+			   result[p] = (int)(cacheHsbValue[index] * 255);
 		}
 		return result;
 	}
