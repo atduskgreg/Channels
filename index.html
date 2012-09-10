@@ -21,8 +21,9 @@
           <h1 id="project_title">Channels</h1>
           <h2 id="project_tagline">Processing library that lets you extract RGB, brightness, hue, and saturation channels from a PImage</h2>
 
-            <section id="downloads" style="width:110px">
-              <a class="zip_download_link" href="https://github.com/downloads/atduskgreg/Channels/Channels.zip">Download Channels</a>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/atduskgreg/Channels/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/atduskgreg/Channels/tarball/master">Download this project as a tar.gz file</a>
             </section>
         </header>
     </div>
@@ -44,39 +45,39 @@
 
 <p>Here's an example of the first mode: modifying a PImage in place so it displays just one channel of the original image.</p>
 
-<pre><code>PImage myImage;
-void setup(){
-  size(500,500);
-  myImage = loadImage("testImage.png"); // a square image around 500x500 pixels
-  Channels.red(myImage);
-}
+<div class="highlight"><pre><span class="n">PImage</span> <span class="n">myImage</span><span class="o">;</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="o">(){</span>
+  <span class="n">size</span><span class="o">(</span><span class="mi">500</span><span class="o">,</span><span class="mi">500</span><span class="o">);</span>
+  <span class="n">myImage</span> <span class="o">=</span> <span class="n">loadImage</span><span class="o">(</span><span class="s">"testImage.png"</span><span class="o">);</span> <span class="c1">// a square image around 500x500 pixels</span>
+  <span class="n">Channels</span><span class="o">.</span><span class="na">red</span><span class="o">(</span><span class="n">myImage</span><span class="o">);</span>
+<span class="o">}</span>
 
-void draw(){
-  image(myImage,0,0);
-}
-</code></pre>
+<span class="kt">void</span> <span class="nf">draw</span><span class="o">(){</span>
+  <span class="n">image</span><span class="o">(</span><span class="n">myImage</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
 
 <p>Here's an example of the second mode: extracting the pixels of a particular channel for use:</p>
 
-<pre><code>PImage myImage;
-int[] myPixels;
-void setup(){
-  size(500,500);
-  myImage = loadImage(testImage.png);
-  myPixels = new int[myImage.width * myImage.height];
+<div class="highlight"><pre><span class="n">PImage</span> <span class="n">myImage</span><span class="o">;</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">myPixels</span><span class="o">;</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="o">(){</span>
+  <span class="n">size</span><span class="o">(</span><span class="mi">500</span><span class="o">,</span><span class="mi">500</span><span class="o">);</span>
+  <span class="n">myImage</span> <span class="o">=</span> <span class="n">loadImage</span><span class="o">(</span><span class="n">testImage</span><span class="o">.</span><span class="na">png</span><span class="o">);</span>
+  <span class="n">myPixels</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">myImage</span><span class="o">.</span><span class="na">width</span> <span class="o">*</span> <span class="n">myImage</span><span class="o">.</span><span class="na">height</span><span class="o">];</span>
 
-  myImage.loadPixels();
-  myPixels = Channels.red(myImage.pixels);
-}
+  <span class="n">myImage</span><span class="o">.</span><span class="na">loadPixels</span><span class="o">();</span>
+  <span class="n">myPixels</span> <span class="o">=</span> <span class="n">Channels</span><span class="o">.</span><span class="na">red</span><span class="o">(</span><span class="n">myImage</span><span class="o">.</span><span class="na">pixels</span><span class="o">);</span>
+<span class="o">}</span>
 
-void draw(){
-  for(int i = 0; i &lt; myPixels.length; i++){
-    // do something with the pixels in the red channel...
-  }
-}
-</code></pre>
+<span class="kt">void</span> <span class="nf">draw</span><span class="o">(){</span>
+  <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">myPixels</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+    <span class="c1">// do something with the pixels in the red channel...</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
 
-<p>An example of something useful to do with the pixels of a given channel might be to run the marching squares algorithm on it using <a href="http://makematics.com/code/isolines">the Isolines Processing library</a>.</p>
+<p>An example of something useful to do with the pixels of a given channel might be to run the marching squares algorithm on it using <a href="http://makematics.com/code/Isolines">the Isolines Processing library</a>.</p>
       </section>
     </div>
 
